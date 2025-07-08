@@ -41,3 +41,5 @@ Build a broker-type system that consists of a microservice for sending emails to
 
 ![Maildev Inbox](assets/maildev-delivered.png)
 
+<!-- GitAds-Verify: RRZT9B25SJVXZ7XE99Q73DDI551VOMOQ -->
+
