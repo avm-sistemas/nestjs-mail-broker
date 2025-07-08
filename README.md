@@ -42,4 +42,7 @@ Build a broker-type system that consists of a microservice for sending emails to
 ![Maildev Inbox](assets/maildev-delivered.png)
 
 <!-- GitAds-Verify: RRZT9B25SJVXZ7XE99Q73DDI551VOMOQ -->
+## GitAds Sponsored
+[![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=avm-sistemas/nestjs-mail-broker@github)](https://gitads.dev/v1/ad-track?source=avm-sistemas/nestjs-mail-broker@github)
+
 
