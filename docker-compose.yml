@@ -19,6 +19,7 @@ services:
 
   broker-kafka:
     image: apache/kafka:latest
+    restart: always
     container_name: broker-kafka
     environment:
       KAFKA_NODE_ID: 1
