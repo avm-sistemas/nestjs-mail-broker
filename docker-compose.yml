@@ -51,7 +51,9 @@ services:
     restart: always
     build: ./broker-consumer
     environment:
-      RABBIT_SERVER: rabbitmq
+      BROKER_ENGINE: rabbit
+      BROKER_SERVER: rabbitmq
+      BROKER_PORT: 5672      
       MAIL_SERVER: maildev
     networks:
       - default
