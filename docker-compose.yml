@@ -5,8 +5,9 @@ volumes:
 
 services:
 
-  rabbitmq:
+  broker-rabbitmq:
     image: rabbitmq:3-management-alpine
+    container_name: broker-rabbit
     restart: always
     ports:
       - 5672:5672
@@ -15,6 +16,23 @@ services:
         - rabbitmq_data:/var/lib/rabbitmq/
     networks:
       - default
+
+  broker-kafka:
+    image: apache/kafka:latest
+    container_name: broker-kafka
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://localhost:9092,CONTROLLER://localhost:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_NUM_PARTITIONS: 3      
 
   maildev:
     image: maildev/maildev
@@ -35,25 +53,48 @@ services:
     networks:
       - default
 
-  broker-emiter:
+  broker-emiter-rabbit:
     build: ./broker-emiter
     restart: always
     environment:
       BROKER_ENGINE: rabbit
-      BROKER_SERVER: localhost
+      BROKER_SERVER: broker-rabbitmq
       BROKER_PORT: 5672
     ports:
       - 5000:5000
     networks:
       - default
 
-  broker-consumer:
+  broker-consumer-rabbit:
     restart: always
     build: ./broker-consumer
     environment:
       BROKER_ENGINE: rabbit
-      BROKER_SERVER: rabbitmq
+      BROKER_SERVER: broker-rabbitmq
       BROKER_PORT: 5672      
+      MAIL_SERVER: maildev
+    networks:
+      - default
+
+  broker-emiter-kafka:
+    build: ./broker-emiter
+    restart: always
+    environment:
+      BROKER_ENGINE: rabbit
+      BROKER_SERVER: broker-kafka
+      BROKER_PORT: 9092
+    ports:
+      - 5000:5000
+    networks:
+      - default
+
+  broker-consumer-kafka:
+    restart: always
+    build: ./broker-consumer
+    environment:
+      BROKER_ENGINE: rabbit
+      BROKER_SERVER: broker-kafka
+      BROKER_PORT: 9092      
       MAIL_SERVER: maildev
     networks:
       - default
