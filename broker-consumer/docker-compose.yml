@@ -2,5 +2,9 @@ version: '3'
 
 services:
 
-    broker-consumer:
+    broker-consumer:    
       build: .
+      environment: 
+        BROKER_ENGINE: rabbit
+        BROKER_SERVER: localhost
+        BROKER_PORT: 5672

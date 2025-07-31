@@ -39,7 +39,9 @@ services:
     build: ./broker-emiter
     restart: always
     environment:
-      RABBIT_SERVER: rabbitmq      
+      BROKER_ENGINE: rabbit
+      BROKER_SERVER: localhost
+      BROKER_PORT: 5672
     ports:
       - 5000:5000
     networks:
