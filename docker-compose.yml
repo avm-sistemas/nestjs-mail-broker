@@ -84,7 +84,7 @@ services:
       BROKER_SERVER: broker-kafka
       BROKER_PORT: 9092
     ports:
-      - 5000:5000
+      - 6000:6000
     networks:
       - default
 
