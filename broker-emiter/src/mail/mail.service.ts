@@ -15,12 +15,16 @@ export class MailService {
     const brokerEngine = this.configService.get<string>('BROKER_ENGINE');
     const brokerServer = this.configService.get<string>('BROKER_SERVER');
     const brokerPort = this.configService.get<string>('BROKER_PORT');
+    
+    console.log('BROKER_ENGINE = ', brokerEngine);
+    console.log('BROKER_SERVER = ', brokerServer);
+    console.log('BROKER_PORT   = ', brokerPort);    
 
-    if (brokerEngine.length == 0) {
+    if (brokerServer.length == 0) {        
         throw new InternalServerErrorException('BROKER_SERVER unavailable.')
     }
-
-    if (brokerEngine == 'rabbit') {
+    
+    if (brokerEngine == 'rabbit') {        
         this.client = ClientProxyFactory.create(
             {
                 transport: Transport.RMQ,

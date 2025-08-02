@@ -9,19 +9,27 @@ dotenv.config();
 
 async function bootstrap() {
 
-  let options;
+  let options = {
+
+  };
 
   const brokerServer = process.env.BROKER_SERVER;
   const brokerEngine = process.env.BROKER_ENGINE;
   const brokerPort = process.env.BROKER_PORT;
 
-  if (brokerEngine.length == 0) {
-      throw new InternalServerErrorException('BROKER_SERVER unavailable.')
+  // Added checks for undefined process.env variables, as they can be undefined if not set.
+  if (!brokerEngine || brokerEngine.length === 0) { // Check if undefined or empty
+      throw new InternalServerErrorException('BROKER_ENGINE unavailable.'); // Changed from BROKER_SERVER for accuracy
+  }
+  if (!brokerServer || brokerServer.length === 0) {
+      throw new InternalServerErrorException('BROKER_SERVER unavailable.');
+  }
+  if (!brokerPort || brokerPort.length === 0) {
+      throw new InternalServerErrorException('BROKER_PORT unavailable.');
   }
 
   if (brokerEngine == 'rabbit') {
-    this.options = 
-      {
+    options = {
         transport: Transport.RMQ,
         options: {
           urls: ['amqp://' + brokerServer +':' + brokerPort],
@@ -30,8 +38,7 @@ async function bootstrap() {
       };
   } else
   if (brokerEngine == 'kafka') {
-    this.options =
-      {
+    options = {
         transport: Transport.KAFKA,
         options: {
           client: {
@@ -44,7 +51,7 @@ async function bootstrap() {
         },
       };
   } else {
-      throw new InternalServerErrorException('BROKER_ENGINE unavailable.');
+      throw new InternalServerErrorException('BROKER_ENGINE unavailable or unsupported.');
   }
 
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
