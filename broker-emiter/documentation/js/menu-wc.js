@@ -59,51 +59,38 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link" >AppModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/RabbitMQModule.html" data-type="entity-link" >RabbitMQModule</a>
+                                <a href="modules/MailModule.html" data-type="entity-link" >MailModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#controllers-links-module-RabbitMQModule-21738dae75170143708d6b42d5277309e35645abcdbc97224df667119f457af8674988d95b2e475f01ca695509ebb1b62860fa7d7c3649318be4574ae721e03f"' : 'data-bs-target="#xs-controllers-links-module-RabbitMQModule-21738dae75170143708d6b42d5277309e35645abcdbc97224df667119f457af8674988d95b2e475f01ca695509ebb1b62860fa7d7c3649318be4574ae721e03f"' }>
+                                            'data-bs-target="#controllers-links-module-MailModule-04ccff9125848809cd46048a05a1d0ff1c75dafda51b517cf90bc4d647d8dfa6b2da124575f2fb608b04d495c07224d838dde63607457103a00eccb7ca0a9c96"' : 'data-bs-target="#xs-controllers-links-module-MailModule-04ccff9125848809cd46048a05a1d0ff1c75dafda51b517cf90bc4d647d8dfa6b2da124575f2fb608b04d495c07224d838dde63607457103a00eccb7ca0a9c96"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-RabbitMQModule-21738dae75170143708d6b42d5277309e35645abcdbc97224df667119f457af8674988d95b2e475f01ca695509ebb1b62860fa7d7c3649318be4574ae721e03f"' :
-                                            'id="xs-controllers-links-module-RabbitMQModule-21738dae75170143708d6b42d5277309e35645abcdbc97224df667119f457af8674988d95b2e475f01ca695509ebb1b62860fa7d7c3649318be4574ae721e03f"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-MailModule-04ccff9125848809cd46048a05a1d0ff1c75dafda51b517cf90bc4d647d8dfa6b2da124575f2fb608b04d495c07224d838dde63607457103a00eccb7ca0a9c96"' :
+                                            'id="xs-controllers-links-module-MailModule-04ccff9125848809cd46048a05a1d0ff1c75dafda51b517cf90bc4d647d8dfa6b2da124575f2fb608b04d495c07224d838dde63607457103a00eccb7ca0a9c96"' }>
                                             <li class="link">
-                                                <a href="controllers/RabbitMQController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RabbitMQController</a>
+                                                <a href="controllers/MailController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >MailController</a>
                                             </li>
                                         </ul>
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#injectables-links-module-RabbitMQModule-21738dae75170143708d6b42d5277309e35645abcdbc97224df667119f457af8674988d95b2e475f01ca695509ebb1b62860fa7d7c3649318be4574ae721e03f"' : 'data-bs-target="#xs-injectables-links-module-RabbitMQModule-21738dae75170143708d6b42d5277309e35645abcdbc97224df667119f457af8674988d95b2e475f01ca695509ebb1b62860fa7d7c3649318be4574ae721e03f"' }>
+                                        'data-bs-target="#injectables-links-module-MailModule-04ccff9125848809cd46048a05a1d0ff1c75dafda51b517cf90bc4d647d8dfa6b2da124575f2fb608b04d495c07224d838dde63607457103a00eccb7ca0a9c96"' : 'data-bs-target="#xs-injectables-links-module-MailModule-04ccff9125848809cd46048a05a1d0ff1c75dafda51b517cf90bc4d647d8dfa6b2da124575f2fb608b04d495c07224d838dde63607457103a00eccb7ca0a9c96"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-RabbitMQModule-21738dae75170143708d6b42d5277309e35645abcdbc97224df667119f457af8674988d95b2e475f01ca695509ebb1b62860fa7d7c3649318be4574ae721e03f"' :
-                                        'id="xs-injectables-links-module-RabbitMQModule-21738dae75170143708d6b42d5277309e35645abcdbc97224df667119f457af8674988d95b2e475f01ca695509ebb1b62860fa7d7c3649318be4574ae721e03f"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-MailModule-04ccff9125848809cd46048a05a1d0ff1c75dafda51b517cf90bc4d647d8dfa6b2da124575f2fb608b04d495c07224d838dde63607457103a00eccb7ca0a9c96"' :
+                                        'id="xs-injectables-links-module-MailModule-04ccff9125848809cd46048a05a1d0ff1c75dafda51b517cf90bc4d647d8dfa6b2da124575f2fb608b04d495c07224d838dde63607457103a00eccb7ca0a9c96"' }>
                                         <li class="link">
-                                            <a href="injectables/RabbitMQService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RabbitMQService</a>
+                                            <a href="injectables/MailService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >MailService</a>
                                         </li>
                                     </ul>
                                 </li>
                             </li>
                 </ul>
                 </li>
-                        <li class="chapter">
-                            <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#controllers-links"' :
-                                'data-bs-target="#xs-controllers-links"' }>
-                                <span class="icon ion-md-swap"></span>
-                                <span>Controllers</span>
-                                <span class="icon ion-ios-arrow-down"></span>
-                            </div>
-                            <ul class="links collapse " ${ isNormalMode ? 'id="controllers-links"' : 'id="xs-controllers-links"' }>
-                                <li class="link">
-                                    <a href="controllers/RabbitMQController.html" data-type="entity-link" >RabbitMQController</a>
-                                </li>
-                            </ul>
-                        </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#classes-links"' :
                             'data-bs-target="#xs-classes-links"' }>
@@ -120,19 +107,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                         </ul>
                     </li>
-                        <li class="chapter">
-                            <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#injectables-links"' :
-                                'data-bs-target="#xs-injectables-links"' }>
-                                <span class="icon ion-md-arrow-round-down"></span>
-                                <span>Injectables</span>
-                                <span class="icon ion-ios-arrow-down"></span>
-                            </div>
-                            <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
-                                <li class="link">
-                                    <a href="injectables/RabbitMQService.html" data-type="entity-link" >RabbitMQService</a>
-                                </li>
-                            </ul>
-                        </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#miscellaneous-links"'
                             : 'data-bs-target="#xs-miscellaneous-links"' }>
