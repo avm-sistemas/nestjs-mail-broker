@@ -1,12 +1,55 @@
-version: '3'
-
 volumes:
   rabbitmq_data:
+  kafka-volume:
+  zookeeper-volume:
 
 services:
 
-  rabbitmq:
+  zookeeper:
+    restart: always
+    image: docker.io/bitnami/zookeeper:3.8
+    ports:
+      - "2181:2181"
+    volumes:
+      - "zookeeper-volume:/bitnami"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+      
+  kafka:
+    restart: always
+    image: docker.io/bitnami/kafka:3.3
+    ports:
+      - "9093:9093"
+    volumes:
+      - "kafka-volume:/bitnami"
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=CLIENT://:9092,EXTERNAL://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka:9092,EXTERNAL://localhost:9093
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=CLIENT
+    depends_on:
+      - zookeeper
+
+  kafka-ui:
+    image: kafbat/kafka-ui:latest    
+    restart: always
+    ports:
+      # Expose the Kafka UI port to the host machine.
+      - "8585:8080"
+    environment:
+      # Define the Kafka cluster that Kafka UI should connect to.      
+      DYNAMIC_CONFIG_ENABLED: "true"
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+    depends_on:
+      - kafka
+      
+  broker-rabbitmq:
     image: rabbitmq:3-management-alpine
+    container_name: broker-rabbit
     restart: always
     ports:
       - 5672:5672
@@ -35,21 +78,48 @@ services:
     networks:
       - default
 
-  broker-emiter:
+  broker-emiter-rabbit:
     build: ./broker-emiter
     restart: always
     environment:
-      RABBIT_SERVER: rabbitmq      
+      BROKER_ENGINE: rabbit
+      BROKER_SERVER: broker-rabbitmq
+      BROKER_PORT: 5672
     ports:
       - 5000:5000
     networks:
       - default
 
-  broker-consumer:
+  broker-consumer-rabbit:
     restart: always
     build: ./broker-consumer
     environment:
-      RABBIT_SERVER: rabbitmq
+      BROKER_ENGINE: rabbit
+      BROKER_SERVER: broker-rabbitmq
+      BROKER_PORT: 5672      
+      MAIL_SERVER: maildev
+    networks:
+      - default
+
+  broker-emiter-kafka:
+    build: ./broker-emiter
+    restart: always
+    environment:
+      BROKER_ENGINE: rabbit
+      BROKER_SERVER: broker-kafka
+      BROKER_PORT: 9093
+    ports:
+      - 6000:6000
+    networks:
+      - default
+
+  broker-consumer-kafka:
+    restart: always
+    build: ./broker-consumer
+    environment:
+      BROKER_ENGINE: rabbit
+      BROKER_SERVER: broker-kafka
+      BROKER_PORT: 9093 
       MAIL_SERVER: maildev
     networks:
       - default

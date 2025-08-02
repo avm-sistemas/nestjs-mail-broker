@@ -1,21 +1,22 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { RabbitMQService } from './rabbit-mq.service';
+//import { RabbitMQService } from './rabbit-mq.service';
 import { EmailDto } from 'src/dto/email.dto';
 import { ResponseDto } from 'src/dto/response.dto';
 import { ApiExtraModels, ApiTags } from '@nestjs/swagger';
+import { MailService } from './mail.service';
 
 @ApiExtraModels(ResponseDto)
-@ApiTags('Broker')
-@Controller('broker')
-export class RabbitMQController {
+@ApiTags('Mailer')
+@Controller('mailer')
+export class MailController {
 
-    constructor(private readonly rabbitMQService: RabbitMQService) {}
+    constructor(private readonly mailService: MailService) {}
 
     @Post('send-email')
     async sendEmail(@Body() email: EmailDto) {
       const response = new ResponseDto();
       try {
-        await this.rabbitMQService.sendEmail(email);
+        await this.mailService.sendEmail(email);
 
         response.success = true;
         response.data = email;
