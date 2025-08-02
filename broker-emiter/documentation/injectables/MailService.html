@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>broker-consumer documentation</title>
+        <title>broker-emiter documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -64,7 +64,7 @@
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
-                    <a href="../" class="navbar-brand">broker-consumer documentation</a>
+                    <a href="../" class="navbar-brand">broker-emiter documentation</a>
                     <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
                </div>
         </div>
@@ -126,6 +126,21 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#client" >client</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -137,7 +152,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#sendMail" >sendMail</a>
+                                <a href="#sendEmail" >sendEmail</a>
                             </li>
                         </ul>
                     </td>
@@ -157,12 +172,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(mailerService: MailerService)</code>
+<code>constructor(configService: ConfigService)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/mail/mail.service.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/mail/mail.service.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -180,10 +195,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>mailerService</td>
+                                                        <td>configService</td>
                                                   
                                                         <td>
-                                                                    <code>MailerService</code>
+                                                                    <code>ConfigService</code>
                                                         </td>
                                                   
                                                     <td>
@@ -209,26 +224,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="sendMail"></a>
+                    <a name="sendEmail"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
-                        <span ><b>sendMail</b></span>
-                        <a href="#sendMail"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>sendEmail</b></span>
+                        <a href="#sendEmail"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>sendMail(mail: <a href="../classes/EmailDto.html" target="_self">EmailDto</a>)</code>
+                    <code>sendEmail(email: <a href="../classes/EmailDto.html" target="_self">EmailDto</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="10"
-                                    class="link-to-prism">src/mail/mail.service.ts:10</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/mail/mail.service.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -249,7 +264,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>mail</td>
+                                                <td>email</td>
                                             <td>
                                                             <code><a href="../classes/EmailDto.html" target="_self" >EmailDto</a></code>
                                             </td>
@@ -275,32 +290,105 @@
         </tbody>
     </table>
 </section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="client"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>client</b></span>
+                        <a href="#client"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ClientProxy</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/mail/mail.service.ts:12</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MailerService } from &#x27;@nestjs-modules/mailer&#x27;;
-import { Injectable } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, InternalServerErrorException } from &#x27;@nestjs/common&#x27;;
+import { ConfigService } from &#x27;@nestjs/config&#x27;;
+import {
+  ClientProxy,
+  ClientProxyFactory,
+  Transport,
+} from &#x27;@nestjs/microservices&#x27;;
 import { EmailDto } from &#x27;src/dto/email.dto&#x27;;
 
 @Injectable()
 export class MailService {
+  private client: ClientProxy;
 
-  constructor(private readonly mailerService: MailerService) {}
+  constructor(private configService: ConfigService) {
+    const brokerEngine &#x3D; this.configService.get&lt;string&gt;(&#x27;BROKER_ENGINE&#x27;);
+    const brokerServer &#x3D; this.configService.get&lt;string&gt;(&#x27;BROKER_SERVER&#x27;);
+    const brokerPort &#x3D; this.configService.get&lt;string&gt;(&#x27;BROKER_PORT&#x27;);
+    
+    console.log(&#x27;BROKER_ENGINE &#x3D; &#x27;, brokerEngine);
+    console.log(&#x27;BROKER_SERVER &#x3D; &#x27;, brokerServer);
+    console.log(&#x27;BROKER_PORT   &#x3D; &#x27;, brokerPort);    
 
-  async sendMail(mail: EmailDto) {
-    const { email, subject, message } &#x3D; mail;
+    if (brokerServer.length &#x3D;&#x3D; 0) {        
+        throw new InternalServerErrorException(&#x27;BROKER_SERVER unavailable.&#x27;)
+    }
+    
+    if (brokerEngine &#x3D;&#x3D; &#x27;rabbit&#x27;) {        
+        this.client &#x3D; ClientProxyFactory.create(
+            {
+                transport: Transport.RMQ,
+                options: {
+                    urls: [&#x27;amqp://&#x27;+ brokerServer +&#x27;:&#x27; + brokerPort],
+                    queue: &#x27;mail&#x27;
+                },
+            }
+        );
+    } else
+    if (brokerEngine &#x3D;&#x3D; &#x27;kafka&#x27;) {
+        this.client &#x3D; ClientProxyFactory.create(
+            {        
+                transport: Transport.KAFKA,
+                options: {
+                    client: {
+                        clientId: &#x27;app-gateway&#x27;,
+                        brokers: [ brokerServer + &#x27;:&#x27; + brokerPort],
+                    },
+                    consumer: {
+                        groupId: &#x27;kafka-mail&#x27;,
+                    },
+                },
+            }
+        );
+    } else {
+        throw new InternalServerErrorException(&#x27;BROKER_ENGINE unavailable.&#x27;);
+    }
+  }
 
-    const result &#x3D; await this.mailerService.sendMail({
-      to: email,
-      subject: subject,
-      text: message,
-    });
-
-    console.log(&quot;Mail Server response &#x3D;&gt; &quot;, result);
-
-    return result;    
+  async sendEmail(email: EmailDto) {
+    return await this.client
+      .emit(&#x27;mail_queue&#x27;, email)
+      .toPromise();
   }
 }</code></pre>
     </div>
@@ -373,6 +461,7 @@ export class MailService {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

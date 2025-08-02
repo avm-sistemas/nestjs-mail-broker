@@ -21,28 +21,28 @@
 <polygon fill="#fb8072" stroke="transparent" points="406,-10 406,-30 426,-30 426,-10 406,-10"/>
 <text text-anchor="start" x="429.73" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Exports</text>
 <g id="clust1" class="cluster">
-<title>cluster_AppModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="189,-70 189,-195 307,-195 307,-70 189,-70"/>
+<title>cluster_MailModule</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="174,-70 174,-195 322,-195 322,-70 174,-70"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_AppModule_imports</title>
-<polygon fill="none" stroke="black" points="197,-78 197,-130 299,-130 299,-78 197,-78"/>
+<g id="clust6" class="cluster">
+<title>cluster_MailModule_providers</title>
+<polygon fill="none" stroke="black" points="182,-78 182,-130 314,-130 314,-78 182,-78"/>
+</g>
+<!-- MailService -->
+<g id="node1" class="node">
+<title>MailService</title>
+<ellipse fill="#fdb462" stroke="black" cx="248" cy="-104" rx="58.46" ry="18"/>
+<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">MailService</text>
 </g>
 <!-- MailModule -->
-<g id="node1" class="node">
-<title>MailModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="290.99,-122 287.99,-126 266.99,-126 263.99,-122 205.01,-122 205.01,-86 290.99,-86 290.99,-122"/>
-<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">MailModule</text>
-</g>
-<!-- AppModule -->
 <g id="node2" class="node">
-<title>AppModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="289.66,-187 286.66,-191 265.66,-191 262.66,-187 206.34,-187 206.34,-151 289.66,-151 289.66,-187"/>
-<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00">AppModule</text>
+<title>MailModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="290.99,-187 287.99,-191 266.99,-191 263.99,-187 205.01,-187 205.01,-151 290.99,-151 290.99,-187"/>
+<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00">MailModule</text>
 </g>
-<!-- MailModule&#45;&gt;AppModule -->
+<!-- MailService&#45;&gt;MailModule -->
 <g id="edge1" class="edge">
-<title>MailModule&#45;&gt;AppModule</title>
+<title>MailService&#45;&gt;MailModule</title>
 <path fill="none" stroke="black" d="M248,-122.11C248,-122.11 248,-140.99 248,-140.99"/>
 <polygon fill="black" stroke="black" points="244.5,-140.99 248,-150.99 251.5,-140.99 244.5,-140.99"/>
 </g>
