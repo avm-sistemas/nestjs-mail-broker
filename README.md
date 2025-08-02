@@ -9,16 +9,31 @@ Build a broker-type system that consists of a microservice for sending emails to
 ## Layers
 
 - [RabbitMQ](https://www.rabbitmq.com/)
+- [Apache Kafka](https://kafka.apache.org/)
 - [Maildev](https://maildev.github.io/maildev/)
 - [Broker Emiter Rest API](broker-emiter/README.md)
 - [Broker Consumer](broker-consumer/README.md)
+
+## Parameters to use RabbitMQ
+```bash
+   BROKER_ENGINE: rabbit
+   BROKER_SERVER: localhost
+   BROKER_PORT: 5672
+```
+
+## Parameters to use Apache Kafka
+```bash
+   BROKER_ENGINE: kafka
+   BROKER_SERVER: localhost
+   BROKER_PORT: 9093
+```
 
 
 ## Build & Publish
 
 ```bash
     > git clone https://github.com/avmesquita/nestjs-mail-broker.git
-    > cd nestjs-mail-broker
+    > cd nestjs-mail-broker    
     > docker-compose build --no-cache --pull
     > docker-compose -d up --force-recreate
 ```
