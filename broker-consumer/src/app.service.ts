@@ -12,13 +12,13 @@ export class AppService {
     const response = new ResponseDto();
     try {      
       const result = await this.mailService.sendMail(email);
-
       response.data = result;
       response.error = null;
       response.message = "Message Sent";
-      response.success = (result.accepted.length > 0 && result.rejected.length === 0);
+      response.success = (result.accepted.length > 0 && result.rejected.length === 0);      
       
       return response;
+
     } catch (error) {
       response.data = null;
       response.error = error;

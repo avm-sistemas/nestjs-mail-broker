@@ -1,10 +1,10 @@
 import { MailerService } from '@nestjs-modules/mailer';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { EmailDto } from 'src/dto/email.dto';
 
 @Injectable()
 export class MailService {
-
+  private readonly logger = new Logger(MailService.name);
   constructor(private readonly mailerService: MailerService) {}
 
   async sendMail(mail: EmailDto) {
@@ -15,9 +15,7 @@ export class MailService {
       subject: subject,
       text: message,
     });
-
-    console.log("Mail Server response => ", result);
-
+    this.logger.log("Mail Server response => ", result)
     return result;    
   }
 }
