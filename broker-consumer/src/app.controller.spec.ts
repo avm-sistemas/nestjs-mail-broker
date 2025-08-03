@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { EmailDto } from './dto/email.dto';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -16,7 +17,12 @@ describe('AppController', () => {
 
   describe('root', () => {
     it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+      const mailPackage: EmailDto = {
+        email: 'avmesquita@gmail.com', 
+        message: 'Tested!',
+        subject: 'Test'
+      };
+      expect(appController.handleMail(mailPackage)).toBe({ success: true });
     });
   });
 });
